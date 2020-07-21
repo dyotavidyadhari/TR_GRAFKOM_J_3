@@ -1,7 +1,7 @@
 #include <windows.h>
 #include <GL/glut.h>
 
-//5 OBJEK LEMARI,TEMPAT SAMPAH, KASUR-BANTAL, MEJA , KURSI
+
 
 void init(void);
 void tampil(void);
