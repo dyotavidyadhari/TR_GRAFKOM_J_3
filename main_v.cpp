@@ -50,16 +50,8 @@ void init(void) {
 	glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
 
 }
-
-void tampil (void){
-	glPushMatrix();
-	
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	
-	gluLookAt(0.0f,0.0f,3.0f,0.0f,0.0f,0.0f,0.0f,1.0f,0.0f);
-	glRotatef(xrot,1.0f,0.0f,0.0f);
-	glRotatef(yrot,0.0f,1.0f,0.0f);
-	//depan
+int gedung(){
+		//depan
 	glColor3f(1,0,0);
 	glBegin(GL_POLYGON);
 	glVertex3f(8,7,12);
@@ -724,6 +716,63 @@ void tampil (void){
 	glVertex3f(25,24,-14);
 	glVertex3f(23,24,-10);
 	glEnd();
+}
+
+int tangga(float banyak, float xa,float xb, float ya, float yb,float za,float zb){
+	for (int a=0;a<banyak;a++){
+	
+	glBegin(GL_POLYGON);
+	glVertex3f(xa,yb,za);
+	glVertex3f(xa,ya,za);
+	glVertex3f(xb,ya,za);
+	glVertex3f(xb,yb,za);
+	glEnd();
+	glBegin(GL_POLYGON);
+	glVertex3f(xa,yb,zb);
+	glVertex3f(xa,ya,zb);
+	glVertex3f(xa,ya,za);
+	glVertex3f(xa,yb,za);
+	glEnd();
+	glBegin(GL_POLYGON);
+	glVertex3f(xa,yb,zb);
+	glVertex3f(xa,ya,zb);
+	glVertex3f(xb,ya,zb);
+	glVertex3f(xb,yb,zb);
+	glEnd();
+	glBegin(GL_POLYGON);
+	glVertex3f(xb,yb,zb);
+	glVertex3f(xb,ya,zb);
+	glVertex3f(xb,ya,za);
+	glVertex3f(xb,yb,za);
+	glEnd();
+	glBegin(GL_POLYGON);
+	glVertex3f(xa,ya,za);
+	glVertex3f(xa,ya,zb);
+	glVertex3f(xb,ya,zb);
+	glVertex3f(xb,ya,za);
+	glEnd();
+	xa+=-2;
+	xb+=2;
+	ya+=-2;
+	yb+=-2;
+	za+=2;
+	zb+=-2;
+	}
+}
+
+void tampil (void){
+	glPushMatrix();
+	
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	
+	gluLookAt(0.0f,0.0f,3.0f,0.0f,0.0f,0.0f,0.0f,1.0f,0.0f);
+	glRotatef(xrot,1.0f,0.0f,0.0f);
+	glRotatef(yrot,0.0f,1.0f,0.0f);
+	//gedung
+	gedung();
+	//tangga
+	glColor3f(0.2,0.2,0.2);
+	tangga(5,-10,35,0,-2,16,-16);
 	
 	glPopMatrix();
 	glutSwapBuffers();
