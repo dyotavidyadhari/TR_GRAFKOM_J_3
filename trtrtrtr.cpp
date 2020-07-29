@@ -17,6 +17,15 @@ float ydiff = 0.0f;
 bool mouseDown = false;
 int is_depth;
 
+int a = 0;
+
+void waktu(int i){
+	
+	a-=60;
+	glutTimerFunc(1000, waktu, 60);//mengatur waktu
+	glutPostRedisplay();
+}
+
 
 void ngon(int n, float cx, float cy, float radius, float rotAngle, float zzz){
     double angle, angleInc;
@@ -111,23 +120,7 @@ void balok(float p, float l, float t, float x, float y, float z){ //dari depan p
 }
 
 
-int main (int argc, char **argv)
-{
-	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
-	glutInitWindowSize(900, 700);
-	glutInitWindowPosition(250, 80);
-	glutCreateWindow("672018342 672018370 672018378");
-	init();
-	glutIdleFunc(tampil);
-	glutDisplayFunc(tampil);
-	glutKeyboardFunc(keyboard);
-	glutReshapeFunc(ukuran);
-	glutMouseFunc(mouse);
-	glutMotionFunc(mouseMotion);
-	glutMainLoop();
-	return 0;
-}
+
 
 void init(void) {
 
@@ -1758,7 +1751,16 @@ void tampil (void){
         kotaksamping(1,1.6,25.9,-7.6,96.8);
         kotaksamping(1,1.6,25.9,-7.6,91.8);
         
-	
+	glPushMatrix();
+	glColor3f(0.91,0.98,0);
+	glRotated(a, 0, 0, 1);
+	glTranslated(90,0,0);
+	glutSolidSphere(5,16,14);
+	glPopMatrix();
+
+        
+        
+		
 
 	
 	glPopMatrix();
@@ -1862,7 +1864,24 @@ void ukuran(int lebar, int tinggi)
 	 glMatrixMode(GL_MODELVIEW);	
 }
 
-
+int main (int argc, char **argv)
+{
+	glutInit(&argc, argv);
+	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
+	glutInitWindowSize(900, 700);
+	glutInitWindowPosition(250, 80);
+	glutCreateWindow("672018342 672018370 672018378");
+	waktu(0);
+	init();
+	glutIdleFunc(tampil);
+	glutDisplayFunc(tampil);
+	glutKeyboardFunc(keyboard);
+	glutReshapeFunc(ukuran);
+	glutMouseFunc(mouse);
+	glutMotionFunc(mouseMotion);
+	glutMainLoop();
+	return 0;
+}
 
 
 
